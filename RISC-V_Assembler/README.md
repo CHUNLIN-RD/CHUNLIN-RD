@@ -14,3 +14,8 @@ Implementing RISC-V Assembler with Python
 >* Only work with R, S, I type instructions
 
 ### Input:
+    add x2,x2,x23
+    addi x24,x24,2
+    sw x27,0(x10)
+    sw x1,0(x2)
+    addi x24,x24,1
