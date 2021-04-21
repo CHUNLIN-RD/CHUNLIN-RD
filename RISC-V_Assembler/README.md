@@ -5,7 +5,7 @@ Implementing RISC-V Assembler with Python
 ### To run the code:
 
 >* Step1: Make an code.txt
->* Step2: Copy the directory of the input.txt to the interger input_data_dir in the code
+>* Step2: Copy the directory of the code.txt to the interger code_data_dir in the code
 >* Step3: Run!
 
 ### Limitations:
