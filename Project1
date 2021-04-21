@@ -1,4 +1,5 @@
 def get_code(code):
+
     list_of_code = []
     for line in code:
         stripped_line = line.strip()
@@ -10,7 +11,6 @@ def get_code(code):
     # print(list_of_code)
     return list_of_code
 
-
 def dec2bin(num, digit):
     zero = "000000000000"
     num = num.replace("x", "")
@@ -18,7 +18,6 @@ def dec2bin(num, digit):
     num = num.replace("0b", "")
     num = zero[0:digit - len(num)] + num
     return num
-
 
 def riscv2machine(opcode):
     # R_type,add,sub,sll,slt,sltu,xor,srl,sra,or,and,
@@ -124,16 +123,16 @@ def s_type(opcode):
         return dec2bin(opcode[2], 12) + dec2bin(opcode[3], 5) \
                + "101" + dec2bin(opcode[1], 5) + "0000011"
     elif opcode[0] == "sb":
-        return dec2bin(opcode[2], 12)[5:12] + dec2bin(opcode[1], 5) \
-               + dec2bin(opcode[3], 5) + "000" + dec2bin(opcode[2], 12)[0:5] \
+        return dec2bin(opcode[2], 12)[1:8] + dec2bin(opcode[1], 5) \
+               + dec2bin(opcode[3], 5) + "000" + dec2bin(opcode[2], 12)[7:12] \
                + "0100011"
     elif opcode[0] == "sh":
-        return dec2bin(opcode[2], 12)[5:12] + dec2bin(opcode[1], 5) \
-               + dec2bin(opcode[3], 5) + "001" + dec2bin(opcode[2], 12)[0:5] \
+        return dec2bin(opcode[2], 12)[1:8] + dec2bin(opcode[1], 5) \
+               + dec2bin(opcode[3], 5) + "001" + dec2bin(opcode[2], 12)[7:12] \
                + "0100011"
     elif opcode[0] == "sw":
-        return dec2bin(opcode[2], 12)[5:12] + dec2bin(opcode[1], 5) \
-               + dec2bin(opcode[3], 5) + "010" + dec2bin(opcode[2], 12)[0:5] \
+        return dec2bin(opcode[2], 12)[1:8] + dec2bin(opcode[1], 5) \
+               + dec2bin(opcode[3], 5) + "010" + dec2bin(opcode[2], 12)[7:12] \
                + "0100011"
 
 
