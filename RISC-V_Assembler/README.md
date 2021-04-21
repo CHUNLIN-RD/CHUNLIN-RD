@@ -9,3 +9,5 @@ Step2: Copy the directory of the input.txt to the interger input_data_dir in the
 Step3: Run!
 
 ### Limitations:
+
+Please only input decimal numbers to I-type instructions
