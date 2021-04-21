@@ -1,30 +1,160 @@
-C:
-main()
-{
-  int i,sum=0;
-  for(i=1;i<=10;i++)
-  {
-    sum=sum+i;
-  }
-}
+def get_code(code):
+    list_of_code = []
+    for line in code:
+        stripped_line = line.strip()
+        stripped_line = stripped_line.replace(",", " ")
+        stripped_line = stripped_line.replace("(", " ")
+        stripped_line = stripped_line.replace(")", " ")
+        line_list = stripped_line.split()
+        list_of_code.append(line_list)
+    # print(list_of_code)
+    return list_of_code
 
-RISC-V:
 
-main: add x5,x0,x0
-      addi x6,x0,1
-loop: slti x7,x6,11
-      beq x7,x0,EXIT #beq x7 x0 16
-      add x5,x5,x6
-      addi x6,x6,1
-      j loop         #jal x0 -16(ffff0)1111 1111 1111 1111 0000
-EXIT:
+def dec2bin(num, digit):
+    zero = "000000000000"
+    num = num.replace("x", "")
+    num = bin(int(num))
+    num = num.replace("0b", "")
+    num = zero[0:digit - len(num)] + num
+    return num
 
-machine code:
 
-0000000 00000 00000 000 00101 0110011
-000000000001 00000 000 00110 0010011
-000000001011 00110 010 00111 0010011
-0000000 00000 00111 000 10000 1100011
-0000000 00110 00101 000 00101 0110011
-000000000001 00110 000 00110 0010011
-11111111000111111111 00000 1101111
+def riscv2machine(opcode):
+    # R_type,add,sub,sll,slt,sltu,xor,srl,sra,or,and,
+    if (opcode[0] == "add") or (opcode[0] == "sub") or (opcode[0] == "sll") \
+            or (opcode[0] == "slt") or (opcode[0] == "sltu") or (opcode[0] == "xor") \
+            or (opcode[0] == "srl") or (opcode[0] == "sra") or (opcode[0] == "or") \
+            or (opcode[0] == "and"):
+        return r_type(opcode)
+
+    # I_type,addi,slti,sltiu,xori,ori,andi,slli,srli,srai,
+    elif (opcode[0] == "addi") or (opcode[0] == "slti") or (opcode[0] == "sltiu") \
+            or (opcode[0] == "xori") or (opcode[0] == "ori") or (opcode[0] == "andi") \
+            or (opcode[0] == "slli") or (opcode[0] == "srli") or (opcode[0] == "srai"):
+        return i_type(opcode)
+
+    # S_type,lb,lh,lw,lbu,lhu,sb,sh,sw
+    elif (opcode[0] == "lb") or (opcode[0] == "lh") or (opcode[0] == "lw") \
+            or (opcode[0] == "lbu") or (opcode[0] == "lhu") or (opcode[0] == "sb") \
+            or (opcode[0] == "sh") or (opcode[0] == "sw"):
+        return s_type(opcode)
+
+
+def r_type(opcode):
+    # R_type,add,sub,sll,slt,sltu,xor,srl,sra,or,and,
+    if opcode[0] == "add":
+        return "0000000" + dec2bin(opcode[3], 5) + dec2bin(opcode[2], 5) \
+               + "000" + dec2bin(opcode[1], 5) + "0110011"
+    elif opcode[0] == "sub":
+        return "0100000" + dec2bin(opcode[3], 5) + dec2bin(opcode[2], 5) \
+               + "000" + dec2bin(opcode[1], 5) + "0110011"
+    elif opcode[0] == "sll":
+        return "0000000" + dec2bin(opcode[3], 5) + dec2bin(opcode[2], 5) \
+               + "001" + dec2bin(opcode[1], 5) + "0110011"
+    elif opcode[0] == "slt":
+        return "0000000" + dec2bin(opcode[3], 5) + dec2bin(opcode[2], 5) \
+               + "010" + dec2bin(opcode[1], 5) + "0110011"
+    elif opcode[0] == "sltu":
+        return "0000000" + dec2bin(opcode[3], 5) + dec2bin(opcode[2], 5) \
+               + "011" + dec2bin(opcode[1], 5) + "0110011"
+    elif opcode[0] == "xor":
+        return "0000000" + dec2bin(opcode[3], 5) + dec2bin(opcode[2], 5) \
+               + "100" + dec2bin(opcode[1], 5) + "0110011"
+    elif opcode[0] == "srl":
+        return "0000000" + dec2bin(opcode[3], 5) + dec2bin(opcode[2], 5) \
+               + "101" + dec2bin(opcode[1], 5) + "0110011"
+    elif opcode[0] == "sra":
+        return "0100000" + dec2bin(opcode[3], 5) + dec2bin(opcode[2], 5) \
+               + "101" + dec2bin(opcode[1], 5) + "0110011"
+    elif opcode[0] == "or":
+        return "0000000" + dec2bin(opcode[3], 5) + dec2bin(opcode[2], 5) \
+               + "110" + dec2bin(opcode[1], 5) + "0110011"
+    elif opcode[0] == "and":
+        return "0000000" + dec2bin(opcode[3], 5) + dec2bin(opcode[2], 5) \
+               + "111" + dec2bin(opcode[1], 5) + "0110011"
+
+
+def i_type(opcode):
+    # I_type,addi,slti,sltiu,xori,ori,andi,slli,srli,srai,
+    if opcode[0] == "addi":
+        return dec2bin(opcode[3], 12) + dec2bin(opcode[2], 5) + "000" \
+               + dec2bin(opcode[1], 5) + "0010011"
+    elif opcode[0] == "slti":
+        return dec2bin(opcode[3], 12) + dec2bin(opcode[2], 5) + "010" \
+               + dec2bin(opcode[1], 5) + "0010011"
+    elif opcode[0] == "sltiu":
+        return dec2bin(opcode[3], 12) + dec2bin(opcode[2], 5) + "011" \
+               + dec2bin(opcode[1], 5) + "0010011"
+    elif opcode[0] == "xori":
+        return dec2bin(opcode[3], 12) + dec2bin(opcode[2], 5) + "100" \
+               + dec2bin(opcode[1], 5) + "0010011"
+    elif opcode[0] == "ori":
+        return dec2bin(opcode[3], 12) + dec2bin(opcode[2], 5) + "110" \
+               + dec2bin(opcode[1], 5) + "0010011"
+    elif opcode[0] == "andi":
+        return dec2bin(opcode[3], 12) + dec2bin(opcode[2], 5) + "111" \
+               + dec2bin(opcode[1], 5) + "0010011"
+    elif opcode[0] == "slli":
+        return "0000000" + dec2bin(opcode[3], 5) + dec2bin(opcode[2], 5) + "001" \
+               + dec2bin(opcode[1], 5) + "0010011"
+    elif opcode[0] == "srli":
+        return "0000000" + dec2bin(opcode[3], 5) + dec2bin(opcode[2], 5) + "101" \
+               + dec2bin(opcode[1], 5) + "0010011"
+    elif opcode[0] == "srai":
+        return "0100000" + dec2bin(opcode[3], 5) + dec2bin(opcode[2], 5) + "101" \
+               + dec2bin(opcode[1], 5) + "0010011"
+
+
+def s_type(opcode):
+    # S_type,lb,lh,lw,lbu,lhu,sb,sh,sw
+    if opcode[0] == "lb":
+        return dec2bin(opcode[2], 12) + dec2bin(opcode[3], 5) \
+               + "000" + dec2bin(opcode[1], 5) + "0000011"
+    elif opcode[0] == "lh":
+        return dec2bin(opcode[2], 12) + dec2bin(opcode[3], 5) \
+               + "001" + dec2bin(opcode[1], 5) + "0000011"
+    elif opcode[0] == "lw":
+        return dec2bin(opcode[2], 12) + dec2bin(opcode[3], 5) \
+               + "010" + dec2bin(opcode[1], 5) + "0000011"
+    elif opcode[0] == "lbu":
+        return dec2bin(opcode[2], 12) + dec2bin(opcode[3], 5) \
+               + "100" + dec2bin(opcode[1], 5) + "0000011"
+    elif opcode[0] == "lhu":
+        return dec2bin(opcode[2], 12) + dec2bin(opcode[3], 5) \
+               + "101" + dec2bin(opcode[1], 5) + "0000011"
+    elif opcode[0] == "sb":
+        return dec2bin(opcode[2], 12)[5:12] + dec2bin(opcode[1], 5) \
+               + dec2bin(opcode[3], 5) + "000" + dec2bin(opcode[2], 12)[0:5] \
+               + "0100011"
+    elif opcode[0] == "sh":
+        return dec2bin(opcode[2], 12)[5:12] + dec2bin(opcode[1], 5) \
+               + dec2bin(opcode[3], 5) + "001" + dec2bin(opcode[2], 12)[0:5] \
+               + "0100011"
+    elif opcode[0] == "sw":
+        return dec2bin(opcode[2], 12)[5:12] + dec2bin(opcode[1], 5) \
+               + dec2bin(opcode[3], 5) + "010" + dec2bin(opcode[2], 12)[0:5] \
+               + "0100011"
+
+
+code = open("code.txt", "r")
+list_of_code = get_code(code)  # get risc-v_code
+for i in range(len(list_of_code)):
+    machine_code = riscv2machine(list_of_code[i])
+    if machine_code is not None:
+        print(list_of_code[i])
+        print(machine_code)
+    elif (len(list_of_code[i]) == 5) and (machine_code is None):
+        temp = list_of_code[i][0]
+        list_of_code[i][0] = list_of_code[i][1]
+        list_of_code[i][1] = list_of_code[i][2]
+        list_of_code[i][2] = list_of_code[i][3]
+        list_of_code[i][3] = list_of_code[i][4]
+        list_of_code[i][4] = temp
+        machine_code = riscv2machine(list_of_code[i])
+        print(list_of_code[i])
+        print(machine_code)
+    elif (len(list_of_code[i]) is not 5) and (machine_code is None):
+        print("Not supported!")
+
+
