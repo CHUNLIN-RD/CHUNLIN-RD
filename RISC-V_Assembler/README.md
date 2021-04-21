@@ -12,4 +12,4 @@ Implementing RISC-V Assembler with Python
 
 >* Please only input decimal numbers to I-type instructions
 >* Only work with 
->  -[x] 
+>  * -[x] 
