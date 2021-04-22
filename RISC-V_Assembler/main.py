@@ -1,5 +1,4 @@
 def get_code(code):
-
     list_of_code = []
     for line in code:
         stripped_line = line.strip()
@@ -11,13 +10,63 @@ def get_code(code):
     # print(list_of_code)
     return list_of_code
 
+
 def dec2bin(num, digit):
     zero = "000000000000"
     num = num.replace("x", "")
-    num = bin(int(num))
-    num = num.replace("0b", "")
-    num = zero[0:digit - len(num)] + num
-    return num
+    num = int(num)
+    if num >= 0:
+        num = bin(int(num))
+        num = num.replace("0b", "")
+        num = zero[0:digit - len(num)] + num
+        return num
+    else:
+        num = bin(int(num))
+        num = num.replace("-", "")
+        num = num.replace("0b", "")
+        num = zero[0:digit - len(num)] + num
+        num=findTwoscomplement(num)
+        return num
+
+
+# Function to find two's complement
+def findTwoscomplement(str):
+    n = len(str)
+
+    # Traverse the string to get first
+    # '1' from the last of string
+    i = n - 1
+    while (i >= 0):
+        if (str[i] == '1'):
+            break
+
+        i -= 1
+
+    # If there exists no '1' concatenate 1
+    # at the starting of string
+    if (i == -1):
+        return '1' + str
+
+    # Continue traversal after the
+    # position of first '1'
+    k = i - 1
+    while (k >= 0):
+
+        # Just flip the values
+        if (str[k] == '1'):
+            str = list(str)
+            str[k] = '0'
+            str = ''.join(str)
+        else:
+            str = list(str)
+            str[k] = '1'
+            str = ''.join(str)
+
+        k -= 1
+
+    # return the modified string
+    return str
+
 
 def riscv2machine(opcode):
     # R_type,add,sub,sll,slt,sltu,xor,srl,sra,or,and,
@@ -73,7 +122,7 @@ def r_type(opcode):
         return "0000000" + dec2bin(opcode[3], 5) + dec2bin(opcode[2], 5) \
                + "111" + dec2bin(opcode[1], 5) + "0110011"
 
-
+    
 def i_type(opcode):
     # I_type,addi,slti,sltiu,xori,ori,andi,slli,srli,srai,
     if opcode[0] == "addi":
@@ -104,7 +153,6 @@ def i_type(opcode):
         return "0100000" + dec2bin(opcode[3], 5) + dec2bin(opcode[2], 5) + "101" \
                + dec2bin(opcode[1], 5) + "0010011"
 
-
 def s_type(opcode):
     # S_type,lb,lh,lw,lbu,lhu,sb,sh,sw
     if opcode[0] == "lb":
@@ -134,14 +182,13 @@ def s_type(opcode):
         return dec2bin(opcode[2], 12)[1:8] + dec2bin(opcode[1], 5) \
                + dec2bin(opcode[3], 5) + "010" + dec2bin(opcode[2], 12)[7:12] \
                + "0100011"
-
-
+    
 code = open("code.txt", "r")
 list_of_code = get_code(code)  # get risc-v_code
 for i in range(len(list_of_code)):
     machine_code = riscv2machine(list_of_code[i])
     if machine_code is not None:
-        print(list_of_code[i])
+        #print(list_of_code[i])
         print(machine_code)
     elif (len(list_of_code[i]) == 5) and (machine_code is None):
         temp = list_of_code[i][0]
@@ -151,9 +198,8 @@ for i in range(len(list_of_code)):
         list_of_code[i][3] = list_of_code[i][4]
         list_of_code[i][4] = temp
         machine_code = riscv2machine(list_of_code[i])
-        print(list_of_code[i])
+        #print(list_of_code[i])
         print(machine_code)
     elif (len(list_of_code[i]) is not 5) and (machine_code is None):
         print("Not supported!")
-
 
