@@ -122,7 +122,7 @@ def r_type(opcode):
         return "0000000" + dec2bin(opcode[3], 5) + dec2bin(opcode[2], 5) \
                + "111" + dec2bin(opcode[1], 5) + "0110011"
 
-    
+
 def i_type(opcode):
     # I_type,addi,slti,sltiu,xori,ori,andi,slli,srli,srai,
     if opcode[0] == "addi":
@@ -153,6 +153,7 @@ def i_type(opcode):
         return "0100000" + dec2bin(opcode[3], 5) + dec2bin(opcode[2], 5) + "101" \
                + dec2bin(opcode[1], 5) + "0010011"
 
+
 def s_type(opcode):
     # S_type,lb,lh,lw,lbu,lhu,sb,sh,sw
     if opcode[0] == "lb":
@@ -182,7 +183,8 @@ def s_type(opcode):
         return dec2bin(opcode[2], 12)[1:8] + dec2bin(opcode[1], 5) \
                + dec2bin(opcode[3], 5) + "010" + dec2bin(opcode[2], 12)[7:12] \
                + "0100011"
-    
+
+
 code = open("code.txt", "r")
 list_of_code = get_code(code)  # get risc-v_code
 for i in range(len(list_of_code)):
@@ -202,4 +204,3 @@ for i in range(len(list_of_code)):
         print(machine_code)
     elif (len(list_of_code[i]) is not 5) and (machine_code is None):
         print("Not supported!")
-
