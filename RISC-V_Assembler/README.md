@@ -10,6 +10,7 @@ Implementing RISC-V Assembler with Python
 ### Limitations:
 
 >* Please only input decimal numbers to I-type instructions
+>* All letters must be lowercase
 >* Only work with R, S, I type instructions
 
 ### Input:
