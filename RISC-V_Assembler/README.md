@@ -10,15 +10,16 @@ Implementing RISC-V Assembler with Python
 
 ### Restrictions:
 
->* Please only input decimal numbers to I-type instructions.
->* All letters must be lowercase.
->* Branch labels do not allow in a single line.
 >* ### Supported type: 
 >- [x] Type-U
 >- [X] Type-UJ
 >- [X] Type-I
 >- [X] Type-S
 >- [X] Type-R
+>* Please only input decimal numbers to Type-I instructions.
+>* All letters must be lowercase.
+>* Branch labels do not allow in a single line.
+
 
 ### Input:
 
