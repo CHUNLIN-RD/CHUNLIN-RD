@@ -17,8 +17,8 @@ Implementing RISC-V Assembler with Python
 >- [x] Type-U
 >- [X] Type-UJ
 >- [X] Type-I
->>- [X] Type-I
->>>- [X] Type-I
+>- [X] Type-S
+>- [X] Type-R
 
 ### Input:
 
