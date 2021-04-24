@@ -15,14 +15,14 @@ Implementing RISC-V Assembler with Python
 
 ### Input:
 
-    sw x27,0(x10)
-    bne x2,x2,L2
-L1: sw x1,0(x2)
-    addi x24,x24,-1
-    beq x2,x2,L1
-L2: lui x2,2
-    jalr x0 x1 1
-    auipc x0 1
+        sw x27,0(x10)
+        bne x2,x2,L2
+    L1: sw x1,0(x2)
+        addi x24,x24,-1
+        beq x2,x2,L1
+    L2: lui x2,2
+        jalr x0 x1 1
+        auipc x0 1
     
 ### Output:
     
