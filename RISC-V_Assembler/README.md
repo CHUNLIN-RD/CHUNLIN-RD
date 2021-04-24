@@ -18,7 +18,7 @@ Implementing RISC-V Assembler with Python
 >- [X] Type-R
 >* Please only input decimal numbers to Type-I instructions.
 >* All letters must be lowercase.
->* Branch labels do not allow in a single line.
+>* Do not allow empty line.
 
 
 ### Input:
