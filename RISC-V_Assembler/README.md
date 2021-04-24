@@ -4,15 +4,15 @@ Implementing RISC-V Assembler with Python
 
 ### To run the code:
 
->* Step1: Make an code.txt
->* Step2: Read the Restrictions
+>* Step1: Make an code.txt.
+>* Step2: Read the Restrictions.
 >* Step3: Run!
 
 ### Restrictions:
 
->* Please only input decimal numbers to I-type instructions
->* All letters must be lowercase
->* Only work with R, S, I type instructions
+>* Please only input decimal numbers to I-type instructions.
+>* All letters must be lowercase.
+>* Branch labels do not allowed in single line.
 
 ### Input:
 
