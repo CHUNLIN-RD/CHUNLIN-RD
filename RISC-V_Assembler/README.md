@@ -5,7 +5,7 @@ Implementing RISC-V Assembler with Python
 ### To run the code:
 
 >* Step1: Make an code.txt
->  Step2: Read the Restrictions
+>* Step2: Read the Restrictions
 >* Step3: Run!
 
 ### Restrictions:
