@@ -14,7 +14,7 @@ Implementing RISC-V Assembler with Python
 >* All letters must be lowercase.
 >* Branch labels do not allow in a single line.
 >* ### Supported type: 
->- [x] 資料結構與演算法
+>-      [x] 資料結構與演算法
 - [ ] react原始碼
 - [ ] docker
 
