@@ -10,7 +10,7 @@ Implementing RISC-V Assembler with Python
 
 ### Restrictions:
 
->* ###Supported type: 
+>* ### Supported type: 
 >- [x] Type-U
 >- [X] Type-UJ
 >- [X] Type-I
