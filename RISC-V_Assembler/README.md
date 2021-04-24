@@ -12,7 +12,9 @@ Implementing RISC-V Assembler with Python
 
 >* Please only input decimal numbers to I-type instructions.
 >* All letters must be lowercase.
->* Branch labels do not allowed in single line.
+>* Branch labels do not allow in a single line.
+>* Supported type:
+        - [x] This is a complete item
 
 ### Input:
 
