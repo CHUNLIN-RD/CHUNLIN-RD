@@ -14,11 +14,11 @@ Implementing RISC-V Assembler with Python
 >* All letters must be lowercase.
 >* Branch labels do not allow in a single line.
 >* ### Supported type: 
-_>- [x] Type-U
-_>- [X] Type-UJ
-_>- [X] Type-I
-_>- [X] Type-S
-_>- [X] Type-R
+>- [x] Type-U
+>- [X] Type-UJ
+>- [X] Type-I
+>- [X] Type-S
+>- [X] Type-R
 
 ### Input:
 
