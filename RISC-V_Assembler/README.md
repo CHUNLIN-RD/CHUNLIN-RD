@@ -15,6 +15,10 @@ Implementing RISC-V Assembler with Python
 >* Branch labels do not allow in a single line.
 >* Supported type:
 >       - This is a complete item
+### 接下來要做的事   
+- [x] 資料結構與演算法
+- [ ] react原始碼
+- [ ] docker
 
 ### Input:
 
