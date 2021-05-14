@@ -1,7 +1,5 @@
 import colorama
 from colorama import Fore, Style
-
-
 def get_code(input):
     list_of_input = []
     for line in input:
@@ -9,7 +7,6 @@ def get_code(input):
         list_of_input.append(stripped_line)
     # print(list_of_input)
     return list_of_input
-
 
 def bit_history_predictor(input, history, list_of_predictor):
     for i in range(len(input)):
