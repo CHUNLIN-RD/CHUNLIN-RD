@@ -14,8 +14,8 @@ Implementing Tomasulo Algorithmr with Python
 >* All letters must be uppercase.
 >* Do not allow empty line.
 >* ### Dispatch: 
->- [x] Type-U
->- [X] Type-UJ
->- [X] Type-I
+>- [x] ADD,ADDI: one cycle
+>- [X] SUB,SUBI: one cycle
+>- [X] MUL,DIV: one cycle
 
 
