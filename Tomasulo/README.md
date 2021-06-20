@@ -14,4 +14,6 @@ Implementing Tomasulo Algorithmr with Python
 >* All letters must be uppercase.
 >* Do not allow empty line.
 
+>*** dsi
+
 
