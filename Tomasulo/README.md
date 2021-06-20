@@ -18,7 +18,7 @@ Implementing Tomasulo Algorithmr with Python
 >- [X] SUB,SUBI: one cycle
 >- [X] MUL,DIV:  one cycle
 
->* ###Same-cycle:
+>* ### Same-cycle:
 >* Issue -> Dispatch: NO!
 >* Capture -> Dispatch: NO!
 >* Issue/Result in RAT: YES!
