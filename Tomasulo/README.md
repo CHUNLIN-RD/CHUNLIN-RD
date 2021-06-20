@@ -16,6 +16,6 @@ Implementing Tomasulo Algorithmr with Python
 >* ### Dispatch: 
 >- [x] ADD,ADDI: one cycle
 >- [X] SUB,SUBI: one cycle
->- [X] MUL,DIV: one cycle
+>- [X] MUL,DIV:  one cycle
 
 
