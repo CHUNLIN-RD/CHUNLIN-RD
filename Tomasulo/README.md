@@ -21,6 +21,7 @@ Implementing Tomasulo Algorithmr with Python
 >* ### Same-cycle:
 >* Issue -> Dispatch: NO!
 >* Capture -> Dispatch: NO!
+>* Issue -> Capture: YES!
 >* Issue/Result in RAT: YES!
 
 ### Input:
