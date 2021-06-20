@@ -1,14 +1,14 @@
-# RISC-V_Assembler
+# Tomasulo Algorithm
 
-Implementing RISC-V Assembler with Python
+Implementing Tomasulo Algorithmr with Python
 
 ### To run the code:
 
 >* Step1: Create an code.txt.
->* Step2: Read the Restrictions.
+>* Step2: Read the Default setting.
 >* Step3: Run!
 
-### Restrictions:
+### Default setting:
 
 >* ### Supported type: 
 >- [x] Type-U
