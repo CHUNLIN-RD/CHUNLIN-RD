@@ -10,14 +10,8 @@ Implementing Tomasulo Algorithmr with Python
 
 ### Default setting:
 
->* ### Supported type: 
->- [x] Type-U
->- [X] Type-UJ
->- [X] Type-I
->- [X] Type-S
->- [X] Type-R
->* Please only input decimal numbers to Type-I instructions.
->* All letters must be lowercase.
+>* set up initial parameters in the main.
+>* All letters must be uppercase.
 >* Do not allow empty line.
 
 
