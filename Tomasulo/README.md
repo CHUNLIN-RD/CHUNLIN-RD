@@ -13,7 +13,7 @@ Implementing Tomasulo Algorithmr with Python
 >* set up initial parameters in the main.
 >* All letters must be uppercase.
 >* Do not allow empty line.
->* ### Supported type: 
+>* ### Dispatch: 
 >- [x] Type-U
 >- [X] Type-UJ
 >- [X] Type-I
